@@ -2,7 +2,9 @@
 #include <math.h>
 #include <cmath>
 using namespace std;
-
+float roundToTwoDecimalPlaces(float value) {
+    return std::round(value * 100.0f) / 100.0f;
+}
 float find_spring_length(float y_len, float A_len)
 {
     float hlf_y_len = y_len/2.0;
@@ -65,13 +67,13 @@ int main()
         c = find_angle_c(a);
         F = find_spring_force(x,k,x_rest);
         cout << "New length of spring: ";
-        cout << x;
+        cout << roundToTwoDecimalPlaces(x);
         cout << " cm\nNew angle of a is: ";
-        cout << a;
+        cout << roundToTwoDecimalPlaces(a);
         cout << " Degrees\nNew angle of c is: ";
-        cout << c;
+        cout << roundToTwoDecimalPlaces(c);
         cout << " Degrees\nForce output by spring on release will be: ";
-        cout << F;
+        cout << roundToTwoDecimalPlaces(F);
         cout << " Newtons \n";
         
     }
