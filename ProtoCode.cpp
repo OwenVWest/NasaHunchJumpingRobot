@@ -31,7 +31,6 @@ float find_angle_c(float angle_a)
 
 float find_spring_force(float spring_len, float spring_const, float org_spring_len)
 {
-    cout << spring_len - org_spring_len;
     float spring_diff = spring_len - org_spring_len;
     float force = spring_const*spring_diff;
     return force;
@@ -61,11 +60,11 @@ int main()
         y = y - temp_in;
         cout << "New wire length is: ";
         cout << y;
-        cout << "\n";
         x = find_spring_length(y,A);
         a = find_angle_a(y,A);
         c = find_angle_c(a);
         F = find_spring_force(x,k,x_rest);
+        cout << "\n";
         cout << "New length of spring: ";
         cout << roundToTwoDecimalPlaces(x);
         cout << " cm\nNew angle of a is: ";
