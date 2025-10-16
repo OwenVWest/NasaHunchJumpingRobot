@@ -5,6 +5,14 @@ using namespace std;
 double roundToTwoDecimalPlaces(double value) {
     return std::round(value * 100.0f) / 100.0f;
 }
+
+double calculate_total_height(double force, double mass){
+    force = force * 3; // Assume 3 legs
+    const double g = 9.81; // m/s^2
+    double height = force / (mass * g);
+    return height;
+}
+
 double find_spring_length(double y_len, double A_len)
 {
     double hlf_y_len = y_len/2.0;
@@ -39,12 +47,13 @@ double find_spring_force(double spring_len, double spring_const, double org_spri
 int main()
 {
     // Hooke's law (F = -kx)
-    const double k = 58; // (N/m)
+    const double k = 120; // (N/m)
     const double A = 7.167; // (cm)
     const double c_rest = 77.66; // (angle)
     const double a_rest = 102.34; // (angle) 
     const double y_rest = 9.078; // (cm) // wire
     const double x_rest = 6.46; // (cm) // spring
+    const double total_weight = 1.5; // (kg)
     double F = 0; // (N)
     double x = x_rest;
     double y = y_rest;
@@ -53,7 +62,7 @@ int main()
     double temp_in = 0;
     cout << "Enter the ammount to shorten wire by: ";
     cin >> temp_in;
-    if (temp_in > 12.188 or temp_in < 0) {
+    if (temp_in > 9.078 or temp_in < 0) {
         cout << "Error, Input value is outside 0-12.188cm range";
         return 1;
     } else {
@@ -74,6 +83,9 @@ int main()
         cout << " Degrees\nForce output by spring on release will be: ";
         cout << roundToTwoDecimalPlaces(F);
         cout << " Newtons \n";
+        cout << "Estimated jump height is: ";
+        cout << roundToTwoDecimalPlaces(calculate_total_height(F, total_weight));
+        cout << " meters\n";
         
     }
 }
