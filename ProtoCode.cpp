@@ -2,55 +2,55 @@
 #include <math.h>
 #include <cmath>
 using namespace std;
-float roundToTwoDecimalPlaces(float value) {
+double roundToTwoDecimalPlaces(double value) {
     return std::round(value * 100.0f) / 100.0f;
 }
-float find_spring_length(float y_len, float A_len)
+double find_spring_length(double y_len, double A_len)
 {
-    float hlf_y_len = y_len/2.0;
-    float hlf_x_len = sqrt((pow(A_len, 2.0))-(pow(hlf_y_len, 2.0)));
+    double hlf_y_len = y_len/2.0;
+    double hlf_x_len = sqrt((pow(A_len, 2.0))-(pow(hlf_y_len, 2.0)));
     return (hlf_x_len*2.0);
 }
 
-float find_angle_a(float y_len, float A_len)
+double find_angle_a(double y_len, double A_len)
 {
-    float hlf_y_len = y_len/2;
-    float temp = hlf_y_len/A_len;
-    float angle_a = acos(temp);
+    double hlf_y_len = y_len/2;
+    double temp = hlf_y_len/A_len;
+    double angle_a = acos(temp);
     angle_a = angle_a * 180.0/M_PI;
     return angle_a*2;
 }
 
-float find_angle_c(float angle_a)
+double find_angle_c(double angle_a)
 {   
-    float half_a = angle_a/2;
-    float temp_total = 90.0 + half_a;
-    float angle_c = 180.0 - temp_total;
+    double half_a = angle_a/2;
+    double temp_total = 90.0 + half_a;
+    double angle_c = 180.0 - temp_total;
     return angle_c*2;
 }
 
-float find_spring_force(float spring_len, float spring_const, float org_spring_len)
+double find_spring_force(double spring_len, double spring_const, double org_spring_len)
 {
-    float spring_diff = spring_len - org_spring_len;
-    float force = spring_const*spring_diff;
+    double spring_diff_m = (spring_len - org_spring_len) / 100.0; // cm -> m
+    double force = spring_const * spring_diff_m; // F = k * Δx (N)
     return force;
 }
 
 int main()
 {
     // Hooke's law (F = -kx)
-    const float k = 58.21; // (N/m)
-    const float A = 6.845; // (cm)
-    const float c_rest = 140; // (angle)
-    const float a_rest = 40; // (angle) 
-    const float y_rest = 12.188; // (cm)
-    const float x_rest = 6.234; // (cm)
-    float F = 0; // (N)
-    float x = x_rest;
-    float y = y_rest;
-    float c = c_rest;
-    float a = a_rest;
-    float temp_in = 0;
+    const double k = 58; // (N/m)
+    const double A = 7.167; // (cm)
+    const double c_rest = 77.66; // (angle)
+    const double a_rest = 102.34; // (angle) 
+    const double y_rest = 9.078; // (cm) // wire
+    const double x_rest = 6.46; // (cm) // spring
+    double F = 0; // (N)
+    double x = x_rest;
+    double y = y_rest;
+    double c = c_rest;
+    double a = a_rest;
+    double temp_in = 0;
     cout << "Enter the ammount to shorten wire by: ";
     cin >> temp_in;
     if (temp_in > 12.188 or temp_in < 0) {
