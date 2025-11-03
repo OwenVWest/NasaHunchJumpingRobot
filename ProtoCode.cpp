@@ -26,7 +26,7 @@ double find_angle_a(double y_len, double A_len)
     double temp = hlf_y_len/A_len;
     double angle_a = acos(temp);
     angle_a = angle_a * 180.0/M_PI;
-    return angle_a*2;
+    return angle_a*2; 
 }
 
 double find_angle_c(double angle_a)
@@ -47,13 +47,13 @@ double find_spring_force(double spring_len, double spring_const, double org_spri
 int main()
 {
     // Hooke's law (F = -kx)
-    const double k = 156; // (N/m)
+    const double k = 60; // (N/m)
     const double A = 7.167; // (cm)
     const double c_rest = 77.66; // (angle)
     const double a_rest = 102.34; // (angle) 
     const double y_rest = 9.078; // (cm) // wire
     const double x_rest = 6.46; // (cm) // spring
-    const double total_weight = 3.0; // (kg)
+    const double total_weight = 1.0; // (kg)
     double F = 0; // (N)
     double x = x_rest;
     double y = y_rest;
